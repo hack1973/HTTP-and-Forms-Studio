@@ -3,9 +3,26 @@
 <head>
 	<meta charset="utf-8">
 	<script>
-		// TODO: create a handler
+		
+		let actions = {
+		"google": "https://www.google.com/search",
+		"duckDuckGo": "https://duckduckgo.com",
+		"bing": "https://www.bing.com/search",
+		"ask": "https://www.ask.com/web"
+	};
+	
+	function setSearchEngine() {
+		let engine = document.querySelector("input[name=engine]:checked").value;
+		for (searchEngine in actions) {
+			if (engine === searchEngine) {
+				document.getElementById("searchForm").setAttribute("action", actions[searchEngine]);
+			};
+		};
+	};
+
     window.addEventListener("load", function(){
         // TODO: register the handler
+		document.getElementById("searchForm").addEventListener("submit", setSearchEngine);
     });
 	</script>
 </head>
@@ -13,7 +30,16 @@
 <body>
 
 	<form id="searchForm">
-    <!-- TODO: add form elements -->
+		<input type="text" name="q">
+		<input type="radio" id="google" name="engine" value="google">
+		<label for="google">Google</label>
+		<input type="radio" id="duckDuckGo" name="engine" value="duckDuckGo">
+		<label for="duckDuckGo">DuckDuckGo</label>
+		<input type="radio" id="bing" name="engine" value="bing">
+		<label for="bing">Bing</label>
+		<input type="radio" id="ask" name="engine" value="ask">
+		<label for="ask">Ask</label>
+		<input type="submit" value="Go!">
 	</form>
 
 </body>
